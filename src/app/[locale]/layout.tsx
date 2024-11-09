@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Providers from "./providers";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -19,17 +20,39 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+  children, params
 }: Readonly<{
   children: React.ReactNode;
+    params: {
+      locale: string
+    }
 }>) {
   return (
-    <html lang="en">
+    <html lang={params.locale}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Providers locale={params.locale}>
         {children}
+        </Providers>
       </body>
     </html>
   );
 }
+
+
+
+// import { ReactElement } from 'react'
+// import { I18nProviderClient } from '../../locales/client'
+ 
+// export default async function SubLayout({ params, children }: { params: Promise<{ locale: string }>, children: ReactElement }) {
+//   const { locale } = await params
+ 
+//   return (<html lang='en'>
+//     <body>
+//     <I18nProviderClient locale={locale}>
+//       {children}
+//     </I18nProviderClient>
+//     </body>
+//     </html>)
+// }

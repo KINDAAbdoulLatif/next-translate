@@ -1,8 +1,14 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
+import Image from "next/image";
+import LocalSelect from "./LocalSelect";
+import { useI18n } from "@/locales/client";
+
+export default  function Home() {
+  const t =  useI18n();
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+      <LocalSelect />
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
           className="dark:invert"
@@ -14,13 +20,13 @@ export default function Home() {
         />
         <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li className="mb-2">
-            Get started by editing{" "}
+            {t("new")}{" "}
             <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
               src/app/page.tsx
             </code>
             .
           </li>
-          <li>Save and see your changes instantly.</li>
+          <li>{t("save_changes")}</li>
         </ol>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
@@ -33,11 +39,11 @@ export default function Home() {
             <Image
               className="dark:invert"
               src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
+              alt={t("vercel_logo")}
               width={20}
               height={20}
             />
-            Deploy now
+            {t("deploy_now")}
           </a>
           <a
             className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
@@ -45,7 +51,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Read our docs
+            {t("read_docs")}
           </a>
         </div>
       </main>
@@ -59,11 +65,11 @@ export default function Home() {
           <Image
             aria-hidden
             src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
+            alt={t("file_icon")}
             width={16}
             height={16}
           />
-          Learn
+          {t("learn")}
         </a>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
@@ -74,11 +80,11 @@ export default function Home() {
           <Image
             aria-hidden
             src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
+            alt={t("window_icon")}
             width={16}
             height={16}
           />
-          Examples
+          {t("examples")}
         </a>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
@@ -89,13 +95,43 @@ export default function Home() {
           <Image
             aria-hidden
             src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
+            alt={t("globe_icon")}
             width={16}
             height={16}
           />
-          Go to nextjs.org →
+          {t("go_to_nextjs")}
         </a>
       </footer>
     </div>
-  );
+  )
 }
+
+// Client Component
+// 'use client'
+// import { useI18n } from '../../locales/client'
+ 
+// export default function Page() {
+//   const t = useI18n()
+ 
+//   return (
+//     <div>
+//       <p>{t('new')}</p>
+ 
+      
+//     </div>
+//   )
+// }
+ 
+// import { getI18n } from '../../locales/server'
+ 
+// export default async function Page() {
+//   const t = await getI18n()
+ 
+//   return (
+//     <div>
+//       <p>{t('new')}</p>
+ 
+     
+//     </div>
+//   )
+// }
